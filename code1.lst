@@ -1,0 +1,302 @@
+MPASM  5.51                         CODE1.ASM   5-15-2021  11:47:50         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ;********************************************************** 
+                      00002 ; This program to receive a character from the PC and return (send) next character to PC again. 
+                      00003 ;********************************************************** 
+                      00004 ;this code written by areen alkharabsheh ,roa'a dofash and ranen raied
+                      00005 ;this code calculate the equation 
+                      00006 ;(num4*num3)+num1-num2 
+                      00007 ;This code takes 3 inputs, and the fourth input is the result of adding 1 to the first input.
+Warning[205]: Found directive in column 1. (include)
+                      00008 include "p16f84A.inc" 
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84A processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+                      00208         LIST
+                      00009 ;********************************************************** 
+                      00010 ; User-defined variables
+Warning[205]: Found directive in column 1. (cblock)
+                      00011 cblock 0x20
+  00000020            00012 num1;input number
+  00000021            00013 num2;input number
+  00000022            00014 num3;input number
+  00000023            00015 num4;number1+1
+  00000024            00016 testnum
+Warning[205]: Found directive in column 1. (ENDC)
+                      00017 endc
+Warning[205]: Found directive in column 1. (cblock)
+                      00018 cblock 0x30
+  00000030            00019 result1; multibly
+  00000031            00020 result2;adding
+  00000032            00021 result3;subtracut
+  00000033            00022 result4;res3 or res2
+  00000034            00023 result5;res5 or res4
+  00000035            00024 result6; res4 xor res5
+Warning[205]: Found directive in column 1. (ENDC)
+                      00025 endc
+                      00026 ;********************************************************** 
+                      00027 ; Start of executable code 
+0000                  00028  org 0x00 ; Reset vector 
+0000   0000           00029  nop 
+0001   2802           00030  goto Main 
+                      00031 ;********************************************************** 
+                      00032 ;********************************************************** 
+                      00033 ; Main program 
+0002                  00034 Main
+Warning[203]: Found opcode in column 1. (incf)
+0002   0A20           00035 incf num1,w;num1+1 and assign value in working
+Warning[203]: Found opcode in column 1. (movwf)
+0003   00A3           00036 movwf num4;copy the value  from working register to num4
+0004                  00037 Multibly
+MPASM  5.51                         CODE1.ASM   5-15-2021  11:47:50         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (movlw)
+0004   3000           00038 movlw 0; move the constant 0 to the working register 
+Warning[203]: Found opcode in column 1. (movwf)
+0005   00B0           00039 movwf result1; copy the value 0 from working register to result1
+0006                  00040 Again 
+Warning[203]: Found opcode in column 1. (movf)
+0006   0823           00041 movf num4,w ;move value of num4 to working
+Warning[203]: Found opcode in column 1. (Addwf)
+0007   07B0           00042 Addwf result1,f ; add working value to result1
+Warning[203]: Found opcode in column 1. (Decfsz)
+0008   0BA2           00043 Decfsz num3, f ;if num3=0 goto adding else goto again
+Warning[203]: Found opcode in column 1. (Goto)
+0009   2806           00044 Goto Again 
+Warning[203]: Found opcode in column 1. (Goto)
+000A   280B           00045 Goto Adding
+000B                  00046 Adding
+Warning[203]: Found opcode in column 1. (movf)
+000B   0830           00047 movf result1,w;move value of result1 to working
+Warning[203]: Found opcode in column 1. (addwf)
+000C   0720           00048 addwf num1,w; result1+num1 and assign value in working
+Warning[203]: Found opcode in column 1. (movwf)
+000D   00B1           00049 movwf result2; copy the value  from working register to result2
+000E                  00050 Subtract
+Warning[203]: Found opcode in column 1. (movf)
+000E   0831           00051 movf result2,w ;move value of result2 to working
+Warning[203]: Found opcode in column 1. (subwf)
+000F   0221           00052 subwf num2 ,w ;num2-result2 and assign in working
+Warning[203]: Found opcode in column 1. (xorlw)
+0010   3A11           00053 xorlw 11
+Warning[203]: Found opcode in column 1. (andlw)
+0011   3911           00054 andlw 11 
+Warning[203]: Found opcode in column 1. (movwf)
+0012   00B2           00055 movwf result3;copy the value  from working register to result3
+0013                  00056 Oring
+Warning[203]: Found opcode in column 1. (iorwf)
+0013   0431           00057 iorwf result2,w
+Warning[203]: Found opcode in column 1. (movwf)
+0014   00B3           00058 movwf result4;copy the value  from working register to result4
+Warning[203]: Found opcode in column 1. (movf)
+0015   0830           00059 movf result1,w;;move value of result1 to working
+Warning[203]: Found opcode in column 1. (iorwf)
+0016   0433           00060 iorwf result4,w
+Warning[203]: Found opcode in column 1. (movwf)
+0017   00B4           00061 movwf result5;;copy the value  from working register to result5
+0018                  00062 Xoring
+Warning[203]: Found opcode in column 1. (movf)
+0018   0833           00063 movf result4,w;move value of result4 to working
+Warning[203]: Found opcode in column 1. (xorwf)
+0019   0634           00064 xorwf result5,w
+Warning[203]: Found opcode in column 1. (movwf)
+001A   00B5           00065 movwf result6;copy the value  from working register to result6
+001B                  00066 Test;
+Warning[203]: Found opcode in column 1. (movf)
+MPASM  5.51                         CODE1.ASM   5-15-2021  11:47:50         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001B   0824           00067 movf testnum, w;;move value of testnum to working 
+001C   3C0A           00068  sublw D'10' ;10d - testNum 
+001D   1C03           00069  btfss STATUS, C 
+001E   2820           00070  goto Greater ;C = 0, that's B = 1, then testNum > 10 
+001F   2822           00071  goto Smaller ;C = 1, that's B = 0, then testNum < 10
+0020                  00072 Greater
+Warning[203]: Found opcode in column 1. (addlw)
+0020   3E03           00073 addlw d'3';3+working and assign in working
+Warning[203]: Found opcode in column 1. (goto)
+0021   2824           00074 goto Finsh
+0022                  00075 Smaller
+Warning[203]: Found opcode in column 1. (iorlw)
+0022   380A           00076 iorlw d'10' 
+Warning[203]: Found opcode in column 1. (goto)
+0023   2824           00077 goto Finsh
+0024                  00078 Finsh
+Warning[203]: Found opcode in column 1. (nop)
+0024   0000           00079 nop
+Warning[203]: Found opcode in column 1. (nop)
+0025   0000           00080 nop
+Warning[205]: Found directive in column 1. (end)
+                      00081 end
+MPASM  5.51                         CODE1.ASM   5-15-2021  11:47:50         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+Adding                            0000000B
+Again                             00000006
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+Finsh                             00000024
+GIE                               00000007
+Greater                           00000020
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+Main                              00000002
+Multibly                          00000004
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+Oring                             00000013
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+MPASM  5.51                         CODE1.ASM   5-15-2021  11:47:50         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RP1                               00000006
+STATUS                            00000003
+Smaller                           00000022
+Subtract                          0000000E
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+Test                              0000001B
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Xoring                            00000018
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_DEVID1                           00002006
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+MPASM  5.51                         CODE1.ASM   5-15-2021  11:47:50         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+num1                              00000020
+num2                              00000021
+num3                              00000022
+num4                              00000023
+result1                           00000030
+result2                           00000031
+result3                           00000032
+result4                           00000033
+result5                           00000034
+result6                           00000035
+testnum                           00000024
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXX---------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    38
+Program Memory Words Free:   986
+
+
+Errors   :     0
+Warnings :    38 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

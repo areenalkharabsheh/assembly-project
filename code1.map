@@ -1,0 +1,52 @@
+MPLINK 4.49, Linker
+Linker Map File - Created Sat May 15 11:47:52 2021
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000000
+                   .org_1       code   0x000000    program   0x00004c
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000025      
+            38 out of 1094 program addresses used, program memory utilization is 3%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                   Adding   0x00000b    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                    Again   0x000006    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                    Finsh   0x000024    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                  Greater   0x000020    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                     Main   0x000002    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                 Multibly   0x000004    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                    Oring   0x000013    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                  Smaller   0x000022    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                 Subtract   0x00000e    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                     Test   0x00001b    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                   Xoring   0x000018    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                     Main   0x000002    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                 Multibly   0x000004    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                    Again   0x000006    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                   Adding   0x00000b    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                 Subtract   0x00000e    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                    Oring   0x000013    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                   Xoring   0x000018    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                     Test   0x00001b    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                  Greater   0x000020    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                  Smaller   0x000022    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+                    Finsh   0x000024    program     static C:\Users\areen\OneDrive\Desktop\studying\Embedded\project\new\code1.asm
+
+
